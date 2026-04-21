@@ -6,16 +6,24 @@ import { SearchPanel } from '../SearchPanel/SearchPanel';
 
 import './App.css';
 
-export const App = () => (
-  <div className="app">
-    <Info />
+export const App = () => {
+  const data = [
+    { name: 'John C.', salary: 800, increase: false },
+    { name: 'Alex M.', salary: 3000, increase: true },
+    { name: 'Carl W.', salary: 5000, increase: false },
+  ];
 
-    <div className="search-panel">
-      <SearchPanel />
-      <Filter />
+  return (
+    <div className="app">
+      <Info />
+
+      <div className="search-panel">
+        <SearchPanel />
+        <Filter />
+      </div>
+
+      <EmployeesList data={data} />
+      <EmployeesAddForm />
     </div>
-
-    <EmployeesList />
-    <EmployeesAddForm />
-  </div>
-);
+  );
+};
