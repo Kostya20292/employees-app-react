@@ -1,21 +1,33 @@
 import clsx from 'clsx';
 import './EmployeesListItem.css';
+import { useState } from 'react';
 
 interface Props {
   name: string;
   salary: number;
-  increase: boolean;
 }
 
-export const EmployeesListItem = ({ name, salary, increase }: Props) => {
-  const className = clsx('list-group-item d-flex justify-content-between', increase && 'increase');
+export const EmployeesListItem = ({ name, salary }: Props) => {
+  const [increase, setIncrease] = useState(false);
+  const [rise, setRise] = useState(false);
+  const className = clsx(
+    'list-group-item d-flex justify-content-between',
+    increase && 'increase',
+    rise && 'like',
+  );
+
+  const handleIncrease = () => setIncrease((increase) => !increase);
+
+  const handleRise = () => setRise((rise) => !rise);
 
   return (
     <li className={className}>
-      <span className="list-group-item-label">{name}</span>
+      <span className="list-group-item-label" onClick={handleRise}>
+        {name}
+      </span>
       <input type="text" className="list-group-item-input" defaultValue={salary + '$'} />
       <div className="d-flex justify-content-center align-items-center">
-        <button type="button" className="btn-cookie btn-sm ">
+        <button type="button" className="btn-cookie btn-sm " onClick={handleIncrease}>
           <i className="fas fa-cookie" />
         </button>
 
